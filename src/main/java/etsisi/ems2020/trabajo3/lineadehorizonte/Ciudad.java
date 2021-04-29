@@ -17,26 +17,13 @@ public class Ciudad {
     private ArrayList <Edificio> ciudad;
 
     public Ciudad()
-    {
-    	
-    	/*
+    {/*
     	 * Generamos una ciudad de manera aleatoria para hacer 
     	 * pruebas.
     	 */
-ciudad = new ArrayList <Edificio>();
-int n = 5;
-int i=0;
-int xi,y,xd;
-for(i=0;i<n;i++)
-{
-xi=(int)(Math.random()*100);
-y=(int)(Math.random()*100);
-xd=(int)(xi+(Math.random()*100));
-this.addEdificio(new Edificio(xi,y,xd));
-}
-        
-ciudad = new ArrayList <Edificio>();
-}
+    int n = 5;
+    metodoRandom(n);
+    }
     
         
     public Edificio getEdificio(int i) {
