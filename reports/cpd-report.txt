@@ -1,0 +1,64 @@
+Found a 9 line (83 tokens) duplication in the following files: 
+Starting at line 28 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+Starting at line 243 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+
+int i=0;
+int xi,y,xd;
+for(i=0;i<n;i++)
+{
+xi=(int)(Math.random()*100);
+y=(int)(Math.random()*100);
+xd=(int)(xi+(Math.random()*100));
+this.addEdificio(new Edificio(xi,y,xd));
+}
+=====================================================================
+Found a 7 line (30 tokens) duplication in the following files: 
+Starting at line 179 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+Starting at line 190 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+
+            paux=s1.getPunto(0); // guardamos en paux el primer punto
+            
+            if (paux.getY()!=prev) // si paux no tiene la misma altura del segmento previo
+            {
+                salida.addPunto(paux); // lo añadimos al LineaHorizonte de salida
+                prev = paux.getY();    // y actualizamos prev
+            }
+=====================================================================
+Found a 8 line (28 tokens) duplication in the following files: 
+Starting at line 89 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\LineaHorizonte.java
+Starting at line 70 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Punto.java
+
+    	String linea = "Punto [x=";
+		linea = linea + x;
+		linea = linea + ", y=";
+		linea = linea + y;
+		linea = linea +  "]";
+		return linea;
+    }
+}
+=====================================================================
+Found a 7 line (27 tokens) duplication in the following files: 
+Starting at line 136 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+Starting at line 149 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+
+                paux.setY(Math.max(p1.getY(), s2y)); // y hacemos que el maximo entre la Y del s1 y la altura previa del s2 sea la altura Y de paux
+                
+                if (paux.getY()!=prev) // si este maximo no es igual al del segmento anterior
+                {
+                    salida.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
+                    prev = paux.getY();    // actualizamos prev
+                }
+=====================================================================
+Found a 7 line (26 tokens) duplication in the following files: 
+Starting at line 136 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+Starting at line 149 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+Starting at line 179 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+Starting at line 190 of Z:\6o Semestre Universidad\EMS\Trabajo 3\lab-3-mantenibilidad-giwm31-equipo04-manana\src\main\java\etsisi\ems2020\trabajo3\lineadehorizonte\Ciudad.java
+
+                paux.setY(Math.max(p1.getY(), s2y)); // y hacemos que el maximo entre la Y del s1 y la altura previa del s2 sea la altura Y de paux
+                
+                if (paux.getY()!=prev) // si este maximo no es igual al del segmento anterior
+                {
+                    salida.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
+                    prev = paux.getY();    // actualizamos prev
+                }
