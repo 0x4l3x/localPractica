@@ -64,8 +64,7 @@ public class Ciudad {
 
       LineaHorizonte s1 = this.crearLineaHorizonte(pi,medio);
       LineaHorizonte s2 = this.crearLineaHorizonte(medio+1,pd);
-      Punto a=null, b=null, aux=null; //dios esto es horrible, ayuda
-      linea = LineaHorizonteFussion(s1,s2,a,b,aux);
+      linea = LineaHorizonteFussion(s1,s2);
     }
     return linea;
   }
@@ -76,13 +75,13 @@ public class Ciudad {
   * edificio solapa a otro, si hay edificios contiguos, etc. y solucionar dichos
   * problemas para que el LineaHorizonte calculado sea el correcto.
   */
-  public LineaHorizonte LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2, Punto p1, Punto p2, Punto paux)// quitar los 3 ultimos parametros
+  public LineaHorizonte LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2)// quitar los 3 ultimos parametros
   {
     int s1y=-1, s2y=-1, prev=-1; // en estas variables guardaremos las alturas de los puntos anteriores y en prev guardaremos la previa del segmento anterior introducido
     LineaHorizonte salida = new LineaHorizonte(); // LineaHorizonte de salida
 
-    p1 = new Punto();         // punto donde guardaremos el primer punto del LineaHorizonte s1
-    p2 = new Punto();         // punto donde guardaremos el primer punto del LineaHorizonte s2
+    Punto p1 = new Punto();         // punto donde guardaremos el primer punto del LineaHorizonte s1
+    Punto p2 = new Punto();         // punto donde guardaremos el primer punto del LineaHorizonte s2
     printLineasHorizonte(s1, s2);
 
     while ((!s1.isEmpty()) && (!s2.isEmpty()))     //Mientras tengamos elementos en s1 y en s2
