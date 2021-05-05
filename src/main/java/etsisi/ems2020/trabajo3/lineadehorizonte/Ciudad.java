@@ -14,11 +14,15 @@ public class Ciudad {
 
   private ArrayList <Edificio> ciudad;
 
+  private LineaHorizonte lineadehorizonte;
+
   //Generamos una ciudad con 5 edificios aleatorios para pruebas
   public Ciudad()
   {
     int n = 5;
     metodoRandom(n);
+    //lineadehorizonte= new LineaHorizonte(0, ciudad.size()-1);
+    lineadehorizonte=crearLineaHorizonte(0, ciudad.size()-1);
   }
 
   public Edificio getEdificio(int i) {
@@ -40,19 +44,17 @@ public class Ciudad {
 
   public LineaHorizonte getLineaHorizonte()
   {
-    int pi = 0;
-    int pd = ciudad.size()-1;
-    return crearLineaHorizonte(pi, pd);
+    return lineadehorizonte;
   }
 
   public LineaHorizonte crearLineaHorizonte(int pi, int pd)
   {
     LineaHorizonte linea = new LineaHorizonte();
-    Edificio edificio = new Edificio();
     // Caso base, la ciudad solo tiene un edificio, el perfil es el de ese edificio.
     if(pi==pd)
     {
-      edificio = this.getEdificio(pi);
+      Edificio edificio = new Edificio();
+      edificio = this.getEdificio(pi);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi)
 
       linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
       linea.addPunto(new Punto(edificio.getXd(),0));
@@ -64,7 +66,9 @@ public class Ciudad {
 
       LineaHorizonte s1 = this.crearLineaHorizonte(pi,medio);
       LineaHorizonte s2 = this.crearLineaHorizonte(medio+1,pd);
-      linea = LineaHorizonteFussion(s1,s2);
+      //linea = LineaHorizonteFussion(s1,s2);
+      LineaHorizonteFussion(s1,s2);
+
     }
     return linea;
   }
@@ -75,10 +79,9 @@ public class Ciudad {
   * edificio solapa a otro, si hay edificios contiguos, etc. y solucionar dichos
   * problemas para que el LineaHorizonte calculado sea el correcto.
   */
-  public LineaHorizonte LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2)// quitar los 3 ultimos parametros
+  public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2)// quitar los 3 ultimos parametros
   {
     int s1y=-1, s2y=-1, prev=-1; // en estas variables guardaremos las alturas de los puntos anteriores y en prev guardaremos la previa del segmento anterior introducido
-    LineaHorizonte salida = new LineaHorizonte(); // LineaHorizonte de salida
 
     Punto p1 = new Punto();         // punto donde guardaremos el primer punto del LineaHorizonte s1
     Punto p2 = new Punto();         // punto donde guardaremos el primer punto del LineaHorizonte s2
@@ -91,28 +94,27 @@ public class Ciudad {
 
       if (p1.getX() < p2.getX()) // si X del s1 es menor que la X del s2
       {
-        prev=fusionarAltosDif(p1, prev, s2y, salida);
+        prev=fusionarAltosDif(p1, prev, s2y);
         s1y = p1.getY();   // actualizamos la altura s1y
         s1.borrarPunto(0); // en cualquier caso eliminamos el punto de s1 (tanto si se añade como si no es valido)
       }
       else if (p1.getX() > p2.getX()) // si X del s1 es mayor que la X del s2
       {
-        prev=fusionarAltosDif(p2, prev, s1y, salida);
+        prev=fusionarAltosDif(p2, prev, s1y);
         s2y = p2.getY();   // actualizamos la altura s2y
         s2.borrarPunto(0); // en cualquier caso eliminamos el punto de s2 (tanto si se añade como si no es valido)
       }
       else // si la X del s1 es igual a la X del s2
       {
-        prev=fusionarAltosIguales(p1,p2,prev,salida);
+        prev=fusionarAltosIguales(p1,p2,prev);
         s1y = p1.getY();   // actualizamos la s1y e s2y
         s2y = p2.getY();
         s1.borrarPunto(0); // eliminamos el punto del s1 y del s2
         s2.borrarPunto(0);
       }
     }
-    añadirRestoPuntos(s1, salida, prev);
-    añadirRestoPuntos(s2, salida, prev);
-    return salida;
+    añadirRestoPuntos(s1, prev);
+    añadirRestoPuntos(s2, prev);
   }
 
   public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
@@ -123,34 +125,34 @@ public class Ciudad {
     System.out.println("\n");
   }
 
-  public int fusionarAltosDif(Punto p, int prev, int sy ,LineaHorizonte salida) {
+  public int fusionarAltosDif(Punto p, int prev, int sy ) {
     Punto paux=new Punto();
     paux.setX(p.getX());                // guardamos en paux esa X
     paux.setY(Math.max(p.getY(), sy)); // y hacemos que el maximo entre la Y del s1 y la altura previa del s2 sea la altura Y de paux
 
     if (paux.getY()!=prev) // si este maximo no es igual al del segmento anterior
     {
-      salida.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
+      lineadehorizonte.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
       prev = paux.getY();    // actualizamos prev
     }
     return prev;
   }
 
-  public int fusionarAltosIguales(Punto p1, Punto p2, int prev, LineaHorizonte salida) {
+  public int fusionarAltosIguales(Punto p1, Punto p2, int prev) {
     if ((p1.getY() > p2.getY()) && (p1.getY()!=prev)) // guardaremos aquel punto que tenga la altura mas alta
     {
-      salida.addPunto(p1);
+      lineadehorizonte.addPunto(p1);
       prev = p1.getY();
     }
     if ((p1.getY() <= p2.getY()) && (p2.getY()!=prev))
     {
-      salida.addPunto(p2);
+      lineadehorizonte.addPunto(p2);
       prev = p2.getY();
     }
     return prev;
   }
 
-  public void añadirRestoPuntos(LineaHorizonte s,LineaHorizonte salida, int prev) {
+  public void añadirRestoPuntos(LineaHorizonte s, int prev) {
     while ((!s.isEmpty())) //si aun nos quedan elementos en el s
     {
       Punto paux=new Punto();
@@ -159,7 +161,7 @@ public class Ciudad {
 
       if (paux.getY()!=prev) // si paux no tiene la misma altura del segmento previo
       {
-        salida.addPunto(paux); // lo añadimos al LineaHorizonte de salida
+        lineadehorizonte.addPunto(paux); // lo añadimos al LineaHorizonte de salida
         prev = paux.getY();    // y actualizamos prev
       }
       s.borrarPunto(0); // en cualquier caso eliminamos el punto de s (tanto si se añade como si no es valido)
