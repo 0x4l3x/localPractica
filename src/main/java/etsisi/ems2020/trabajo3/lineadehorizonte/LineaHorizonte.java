@@ -76,12 +76,7 @@ public class LineaHorizonte {
 
     public void imprimir (){ //creo q tambien se puede cambiar el nombre
     	for(int i=0; i< LineaHorizonte.size(); i++ ){
-    		System.out.println(cadena(i));
+    		System.out.println(LineaHorizonte.get(i).toString());
     	}
-    }
-
-    public String cadena (int i){ // cambiar nombre metiodo
-    	Punto p = LineaHorizonte.get(i);
-		return p.toString();
     }
 }
