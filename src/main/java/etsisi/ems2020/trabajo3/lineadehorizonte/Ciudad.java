@@ -48,23 +48,14 @@ public class Ciudad {
   public LineaHorizonte crearLineaHorizonte(int pi, int pd)
   {
     LineaHorizonte linea = new LineaHorizonte();
-    Punto p1 = new Punto();   // punto donde se guardara en su X la Xi del efificio y en su Y la altura del edificio
-    Punto p2 = new Punto();   // punto donde se guardara en su X la Xd del efificio y en su Y le pondremos el valor 0
     Edificio edificio = new Edificio();
-
     // Caso base, la ciudad solo tiene un edificio, el perfil es el de ese edificio.
     if(pi==pd)
     {
-      edificio = this.getEdificio(pi); // Obtenemos el único edificio y lo guardo en b
-      // En cada punto guardamos la coordenada X y la altura.
-      p1.setX(edificio.getXi());
-      p1.setY(edificio.getY());        // guardo la altura
-      p2.setX(edificio.getXd());
-      p2.setY(0);                      // como el edificio se compone de 3 variables, en la Y de p2 le añadiremos un 0
-      // Añado los puntos a la línea del horizonte
+      edificio = this.getEdificio(pi);
 
-      linea.addPunto(p1);  //linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
-      linea.addPunto(p2); //linea.addPunto(new Punto(edificio.getXd(),0));
+      linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
+      linea.addPunto(new Punto(edificio.getXd(),0));
     }
     else
     {
