@@ -184,17 +184,6 @@ public class Ciudad {
 
   public void cargarEdificios (String fichero)
   {
-    //    	int n = 6;
-    //    	int i=0;
-    //        int xi,y,xd;
-    //        for(i=0;i<n;i++)
-    //        {
-    //            xi=(int)(Math.random()*100);
-    //            y=(int)(Math.random()*100);
-    //            xd=(int)(xi+(Math.random()*100));
-    //            this.addEdificio(new Edificio(xi,y,xd));
-    //        }
-
     try
     {
       int xi, y, xd;
