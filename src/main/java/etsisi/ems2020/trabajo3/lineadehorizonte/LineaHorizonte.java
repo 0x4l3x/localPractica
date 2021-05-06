@@ -81,18 +81,13 @@ public class LineaHorizonte {
     		System.out.println(LineaHorizonte.get(i).toString());
     	}
     }
-		public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2)// quitar los 3 ultimos parametros
-	  {
+    public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2){
 	    int s1y=-1, s2y=-1, prev=-1; // en estas variables guardaremos las alturas de los puntos anteriores y en prev guardaremos la previa del segmento anterior introducido
-
-	    Punto p1 = new Punto();         // punto donde guardaremos el primer punto del LineaHorizonte s1
-	    Punto p2 = new Punto();         // punto donde guardaremos el primer punto del LineaHorizonte s2
-	    printLineasHorizonte(s1, s2);
-
+	    printLineasHorizonte(s1, s2);  
 	    while ((!s1.isEmpty()) && (!s2.isEmpty()))     //Mientras tengamos elementos en s1 y en s2
 	    {
-	      p1 = s1.getPunto(0); // guardamos el primer elemento de s1
-	      p2 = s2.getPunto(0); // guardamos el primer elemento de s2
+	      Punto p1 = s1.getPunto(0); // guardamos el primer elemento de s1
+	      Punto p2 = s2.getPunto(0); // guardamos el primer elemento de s2
 
 	      if (p1.getX() < p2.getX()) // si X del s1 es menor que la X del s2
 	      {
@@ -117,7 +112,6 @@ public class LineaHorizonte {
 	    }
 	    añadirRestoPuntos(s1, prev);
 	    añadirRestoPuntos(s2, prev);
-	   	
 	  }
 
 	  public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
