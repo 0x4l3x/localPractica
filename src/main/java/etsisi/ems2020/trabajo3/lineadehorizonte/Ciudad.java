@@ -4,15 +4,15 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import etsisi.ems2020.trabajo3.clasesauxiliares.Edificio;
-import etsisi.ems2020.trabajo3.clasesauxiliares.Punto;
+import etsisi.ems2020.trabajo3.clasesauxIzquierdaliares.Edificio;
+import etsisi.ems2020.trabajo3.clasesauxIzquierdaliares.Punto;
 
 
 /*
 Clase fundamental.
 Sirve para hacer la lectura del fichero de entrada que contiene los datos de como
-están situados los edificios en el fichero de entrada. xi, xd, h, siendo. Siendo
-xi la coordenada en X origen del edificio iésimo, xd la coordenada final en X, y h la altura del edificio.
+están situados los edificios en el fichero de entrada. xIzquierda, xDerecha, h, siendo. Siendo
+xIzquierda la coordenada en X origen del edificio iésimo, xDerecha la coordenada final en X, y h la altura del edificio.
 
 */
 public class Ciudad {
@@ -57,19 +57,15 @@ public class Ciudad {
   public LineaHorizonte crearLineaHorizonte(int pi, int pd)
   {
     LineaHorizonte linea = new LineaHorizonte();
-    // Caso base, la ciudad solo tiene un edificio, el perfil es el de ese edificio.
-    if(pi==pd)
+    if(pi==pd) // Caso base, la ciudad solo tiene un edificio, el perfil es el de ese edificio.
     {
-      Edificio edificio = new Edificio();
-      edificio = this.getEdificio(pi);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi)
-
+      Edificio edificio = this.getEdificio(pi);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi)
       linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
-      linea.addPunto(new Punto(edificio.getXd(),0));
+      linea.addPunto(new Punto(edificio.getxDerecha(),0));
     }
     else
     {
-      // Edificio mitad
-      int medio=(pi+pd)/2;
+      int medio=(pi+pd)/2; // Edificio mitad
 
       LineaHorizonte s1 = this.crearLineaHorizonte(pi,medio);
       LineaHorizonte s2 = this.crearLineaHorizonte(medio+1,pd);
@@ -106,16 +102,16 @@ public class Ciudad {
   {
     try
     {
-      int xi, y, xd;
+      int xIzquierda, y, xDerecha;
       Scanner sr = new Scanner(new File(fichero));
 
       while(sr.hasNext())
       {
-        xi = sr.nextInt();
-        xd = sr.nextInt();
+        xIzquierda = sr.nextInt();
+        xDerecha = sr.nextInt();
         y = sr.nextInt();
 
-        Edificio Salida = new Edificio(xi, y, xd);
+        Edificio Salida = new Edificio(xIzquierda, y, xDerecha);
         this.addEdificio(Salida);
       }
     }
@@ -129,13 +125,13 @@ public class Ciudad {
   public void metodoRandom(int n)
   {
     int i=0;
-    int xi,y,xd;
+    int xIzquierda,y,xDerecha;
     for(i=0;i<n;i++)
     {
-      xi=(int)(Math.random()*100);
+      xIzquierda=(int)(Math.random()*100);
       y=(int)(Math.random()*100);
-      xd=(int)(xi+(Math.random()*100));
-      this.addEdificio(new Edificio(xi,y,xd));
+      xDerecha=(int)(xIzquierda+(Math.random()*100));
+      this.addEdificio(new Edificio(xIzquierda,y,xDerecha));
     }
   }
 }

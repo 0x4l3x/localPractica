@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import etsisi.ems2020.trabajo3.clasesauxiliares.Punto;
+import etsisi.ems2020.trabajo3.clasesauxIzquierdaliares.Punto;
 
 
 public class LineaHorizonte {
@@ -120,9 +120,9 @@ public class LineaHorizonte {
 	  public int fusionarAltosDif(Punto p, int prev, int sy ) {
 	    Punto paux=new Punto();
 	    paux.setX(p.getX());                // guardamos en paux esa X
-	    paux.setY(Math.max(p.getY(), sy)); // y hacemos que el maximo entre la Y del s1 y la altura previa del s2 sea la altura Y de paux
+	    paux.setY(Math.max(p.getY(), sy)); // y hacemos que el maxIzquierdamo entre la Y del s1 y la altura previa del s2 sea la altura Y de paux
 
-	    if (paux.getY()!=prev) // si este maximo no es igual al del segmento anterior
+	    if (paux.getY()!=prev) // si este maxIzquierdamo no es igual al del segmento anterior
 	    {
 	      this.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
 	      prev = paux.getY();    // actualizamos prev
