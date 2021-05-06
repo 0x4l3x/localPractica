@@ -115,7 +115,8 @@ public class LineaHorizonte {
 	    }
 	    añadirRestoPuntos(s1, prev);
 	    añadirRestoPuntos(s2, prev);
-	    	  }
+	   	
+	  }
 
 	  public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
 	    System.out.println("==== S1 ====");

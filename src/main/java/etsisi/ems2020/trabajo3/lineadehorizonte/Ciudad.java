@@ -19,10 +19,12 @@ public class Ciudad {
   //Generamos una ciudad con 5 edificios aleatorios para pruebas
   public Ciudad()
   {
-    int n = 5;
-    metodoRandom(n);
-    //lineadehorizonte= new LineaHorizonte(0, ciudad.size()-1);
-    lineadehorizonte=crearLineaHorizonte(0, ciudad.size()-1);
+	 ciudad = new ArrayList <Edificio>();
+	 lineadehorizonte= new LineaHorizonte();
+
+  }
+  public Ciudad(int n) {//creo que hay que renombrar metodoRandom y quitar esto
+	    metodoRandom(n);
   }
 
   public Edificio getEdificio(int i) {
@@ -44,7 +46,7 @@ public class Ciudad {
 
   public LineaHorizonte getLineaHorizonte()
   {
-    return lineadehorizonte;
+      return  lineadehorizonte=crearLineaHorizonte(0, ciudad.size()-1);
   }
 
   public LineaHorizonte crearLineaHorizonte(int pi, int pd)
@@ -64,9 +66,9 @@ public class Ciudad {
       // Edificio mitad
       int medio=(pi+pd)/2;
 
-      LineaHorizonte s1 = crearLineaHorizonte(pi,medio);
-      LineaHorizonte s2 = crearLineaHorizonte(medio+1,pd);
-      lineadehorizonte.LineaHorizonteFussion(s1,s2);
+      LineaHorizonte s1 = this.crearLineaHorizonte(pi,medio);
+      LineaHorizonte s2 = this.crearLineaHorizonte(medio+1,pd);
+      linea.LineaHorizonteFussion(s1,s2);
     }
     return linea;
   }
@@ -77,7 +79,7 @@ public class Ciudad {
   * edificio solapa a otro, si hay edificios contiguos, etc. y solucionar dichos
   * problemas para que el LineaHorizonte calculado sea el correcto.
   */
-  
+
   /*
   Método que carga los edificios que me pasan en el
   archivo cuyo nombre se encuentra en "fichero".

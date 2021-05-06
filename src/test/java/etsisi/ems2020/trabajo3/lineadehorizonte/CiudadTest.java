@@ -42,8 +42,8 @@ public class CiudadTest extends TestCase{
 			Edificio e6 = new Edificio(14,2,15);
 			c.addEdificio(e6);		
 
-			
-			linea = c.getLineaHorizonte();			
+			linea = c.getLineaHorizonte();		
+
 			assertTrue(linea.getPunto(0).getX()== 1  && linea.getPunto(0).getY()==4);
 			assertTrue(linea.getPunto(1).getX()== 2  && linea.getPunto(1).getY()==7);
 			assertTrue(linea.getPunto(2).getX()== 6  && linea.getPunto(2).getY()==9);
