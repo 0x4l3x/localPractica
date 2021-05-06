@@ -73,7 +73,9 @@ public class LineaHorizonte {
             }
             out.close();
         }
-        catch(Exception e){}
+        catch(Exception e){        
+        	System.out.println("Exception thrown  :" + e);
+}
     }
 
     public void imprimir (){ //creo q tambien se puede cambiar el nombre
@@ -83,6 +85,7 @@ public class LineaHorizonte {
     }
     public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2){
 	    int s1y=-1, s2y=-1, prev=-1; // en estas variables guardaremos las alturas de los puntos anteriores y en prev guardaremos la previa del segmento anterior introducido
+	    
 	    while ((!s1.isEmpty()) && (!s2.isEmpty()))     //Mientras tengamos elementos en s1 y en s2
 	    {
 	      Punto p1 = s1.getPunto(0); // guardamos el primer elemento de s1

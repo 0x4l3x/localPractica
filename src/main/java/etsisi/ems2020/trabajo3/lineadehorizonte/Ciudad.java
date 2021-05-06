@@ -119,7 +119,9 @@ public class Ciudad {
         this.addEdificio(Salida);
       }
     }
-    catch(Exception e){}
+    catch (Exception e) {			
+        System.out.println("Exception thrown  :" + e);
+	}
 
   }
 
