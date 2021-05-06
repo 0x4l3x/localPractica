@@ -3,6 +3,9 @@ package etsisi.ems2020.trabajo3.lineadehorizonte;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import etsisi.ems2020.trabajo3.lineadehorizonte.clasesauxiliares.Edificio;
+import etsisi.ems2020.trabajo3.lineadehorizonte.clasesauxiliares.Punto;
 /*
 Clase fundamental.
 Sirve para hacer la lectura del fichero de entrada que contiene los datos de como

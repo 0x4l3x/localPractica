@@ -3,6 +3,8 @@ package etsisi.ems2020.trabajo3.lineadehorizonte;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
+import etsisi.ems2020.trabajo3.lineadehorizonte.clasesauxiliares.Punto;
+
 public class Main {
 
 	public static void main(String[] args) {
