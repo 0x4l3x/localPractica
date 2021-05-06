@@ -73,10 +73,20 @@ public class Ciudad {
 
       LineaHorizonte s1 = this.crearLineaHorizonte(pi,medio);
       LineaHorizonte s2 = this.crearLineaHorizonte(medio+1,pd);
+	  printLineasHorizonte(s1, s2);  
       linea.LineaHorizonteFussion(s1,s2);
     }
     return linea;
   }
+  
+  public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
+	    System.out.println("==== S1 ====");
+	    s1.imprimir();
+	    System.out.println("==== S2 ====");
+	    s2.imprimir();
+	    System.out.println("\n");
+	  }
+
 
   /**
   * Función encargada de fusionar los dos LineaHorizonte obtenidos por la técnica divide y

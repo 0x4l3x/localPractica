@@ -83,7 +83,6 @@ public class LineaHorizonte {
     }
     public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2){
 	    int s1y=-1, s2y=-1, prev=-1; // en estas variables guardaremos las alturas de los puntos anteriores y en prev guardaremos la previa del segmento anterior introducido
-	    printLineasHorizonte(s1, s2);  
 	    while ((!s1.isEmpty()) && (!s2.isEmpty()))     //Mientras tengamos elementos en s1 y en s2
 	    {
 	      Punto p1 = s1.getPunto(0); // guardamos el primer elemento de s1
@@ -110,17 +109,9 @@ public class LineaHorizonte {
 	        s2.borrarPunto(0);
 	      }
 	    }
-	    añadirRestoPuntos(s1, prev);
-	    añadirRestoPuntos(s2, prev);
+	    añadirRestoPuntos(s1,s2, prev);
 	  }
 
-	  public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
-	    System.out.println("==== S1 ====");
-	    s1.imprimir();
-	    System.out.println("==== S2 ====");
-	    s2.imprimir();
-	    System.out.println("\n");
-	  }
 
 	  public int fusionarAltosDif(Punto p, int prev, int sy ) {
 	    Punto paux=new Punto();
@@ -149,19 +140,26 @@ public class LineaHorizonte {
 	    return prev;
 	  }
 
-	  public void añadirRestoPuntos(LineaHorizonte s, int prev) {
-	    while ((!s.isEmpty())) //si aun nos quedan elementos en el s
+	  public void añadirRestoPuntos(LineaHorizonte s1,LineaHorizonte s2, int prev) {
+		LineaHorizonte restante=new LineaHorizonte();
+		
+		if(s1.isEmpty())
+			restante = s2;
+		else
+			restante=s1;
+		
+	    while ((!restante.isEmpty())) //si aun nos quedan elementos en el s
 	    {
 	      Punto paux=new Punto();
 
-	      paux=s.getPunto(0); // guardamos en paux el primer punto
+	      paux=restante.getPunto(0); // guardamos en paux el primer punto
 
 	      if (paux.getY()!=prev) // si paux no tiene la misma altura del segmento previo
 	      {
 	        this.addPunto(paux); // lo añadimos al LineaHorizonte de salida
 	        prev = paux.getY();    // y actualizamos prev
 	      }
-	      s.borrarPunto(0); // en cualquier caso eliminamos el punto de s (tanto si se añade como si no es valido)
+	      restante.borrarPunto(0); // en cualquier caso eliminamos el punto de s (tanto si se añade como si no es valido)
 	    }
 	  }
 }
