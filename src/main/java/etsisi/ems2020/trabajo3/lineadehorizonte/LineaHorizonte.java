@@ -109,7 +109,8 @@ public class LineaHorizonte {
 	        s2.borrarPunto(0);
 	      }
 	    }
-	    añadirRestoPuntos(s1,s2, prev);
+	    añadirRestoPuntos(s1, prev);
+	    añadirRestoPuntos(s2, prev);
 	  }
 
 
@@ -140,14 +141,7 @@ public class LineaHorizonte {
 	    return prev;
 	  }
 
-	  public void añadirRestoPuntos(LineaHorizonte s1,LineaHorizonte s2, int prev) {
-		LineaHorizonte restante=new LineaHorizonte();
-		
-		if(s1.isEmpty())
-			restante = s2;
-		else
-			restante=s1;
-		
+	  public void añadirRestoPuntos(LineaHorizonte restante,int prev) {
 	    while ((!restante.isEmpty())) //si aun nos quedan elementos en el s
 	    {
 	      Punto paux=new Punto();
