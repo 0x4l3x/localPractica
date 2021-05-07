@@ -54,30 +54,31 @@ public class Ciudad {
       return  lineadehorizonte=crearLineaHorizonte(0, ciudad.size()-1);
   }
 
-  public LineaHorizonte crearLineaHorizonte(int pi, int pd)
+  public LineaHorizonte crearLineaHorizonte(int xIzquierda, int xDerecha)
   {
     LineaHorizonte linea = new LineaHorizonte();
-    if(pi==pd) // Caso base, la ciudad solo tiene un edificio, el perfil es el de ese edificio.
+    if(xIzquierda==xDerecha) // Caso base, la ciudad solo tiene un edificio, el perfil es el de ese edificio.
     {
-    	casoBase(linea,pi);
+    	casoBase(linea,xIzquierda);
     }
     else
     {
-    	divideConRecursividad(linea, pi, pd);
+    	divideConRecursividad(linea,new int [] {xIzquierda, xDerecha});
     }
     return linea;
   }
   
-  public void casoBase(LineaHorizonte linea, int pi) {
-      Edificio edificio = this.getEdificio(pi);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi)
+  public void casoBase(LineaHorizonte linea, int puntoUnico) {
+      Edificio edificio = this.getEdificio(puntoUnico);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi)
+      
       linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
       linea.addPunto(new Punto(edificio.getxDerecha(),0));
   }
-  public void divideConRecursividad(LineaHorizonte linea, int pi, int pd) {
-      int medio=(pi+pd)/2; // Edificio mitad
+  public void divideConRecursividad(LineaHorizonte linea, int [] x) {
+      int mitad=(x[0]+x[1])/2; // Edificio mitad
 
-      LineaHorizonte s1 = this.crearLineaHorizonte(pi,medio);
-      LineaHorizonte s2 = this.crearLineaHorizonte(medio+1,pd);
+      LineaHorizonte s1 = this.crearLineaHorizonte(x[0],mitad);
+      LineaHorizonte s2 = this.crearLineaHorizonte(mitad+1,x[1]);
 	  printLineasHorizonte(s1, s2);  
       linea.LineaHorizonteFussion(s1,s2);
   }
