@@ -92,7 +92,7 @@ public class LineaHorizonte {
 			{
 				yPrevSegIntrod=fusionarAltosDiferentes(puntoS1, yPrevSegIntrod, yPrevPuntoS2);
 				yPrevPuntoS1 = puntoS1.getY(); 
-				s1.borrarPunto(0); // 
+				s1.borrarPunto(0);
 			}
 			else if (puntoS1.getX() > puntoS2.getX())
 			{
