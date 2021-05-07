@@ -1,4 +1,4 @@
-package etsisi.ems2020.trabajo3.main;
+package etsisi.ems2020.trabajo3.lineadehorizonte;
 
 
 import java.io.FileWriter;
