@@ -18,17 +18,17 @@ public class CiudadTest extends TestCase{
 
 	@Before
 	public void setUp() throws Exception {		
-		
+
 	}
 
 	@Test
 	public void testGetLineaHorizonte1() {
-		
+
 		LineaHorizonte linea;
 		Ciudad c;
-		
+
 		try {			
-			
+
 			c = new Ciudad();
 			Edificio e1 = new Edificio(1,4,3);
 			c.addEdificio(e1);
@@ -54,30 +54,30 @@ public class CiudadTest extends TestCase{
 			assertTrue(linea.getPunto(6).getX()== 13 && linea.getPunto(6).getY()==0);
 			assertTrue(linea.getPunto(7).getX()== 14  && linea.getPunto(7).getY()==2);
 			assertTrue(linea.getPunto(8).getX()== 15  && linea.getPunto(8).getY()==0);
-			
+
 		} catch (Exception e) {			
 			fail("Test failed");
 		}
 	}
-	
+
 	@Test
 	public void testGetLineaHorizonte2() {
 		LineaHorizonte linea;
 		Ciudad c;
-		
+
 		try {			
-			
+
 			c = new Ciudad();
 			Edificio e1 = new Edificio(3,5,6);
 			c.addEdificio(e1);
 			Edificio e2 = new Edificio(4,3,9);
 			c.addEdificio(e2);
-			
+
 			linea = c.getLineaHorizonte();			
 			assertTrue(linea.getPunto(0).getX()== 3  && linea.getPunto(0).getY()==5);
 			assertTrue(linea.getPunto(1).getX()== 6  && linea.getPunto(1).getY()==3);
 			assertTrue(linea.getPunto(2).getX()== 9  && linea.getPunto(2).getY()==0);			
-			
+
 		} catch (Exception e) {			
 			fail("Test failed");
 		}
@@ -87,7 +87,7 @@ public class CiudadTest extends TestCase{
 	@After
 	public void tearDown() throws Exception {
 	}
-	
+
 	public static void main(String args[]) {
 		Result result = JUnitCore.runClasses(CiudadTest.class);
 		for (Failure failure : result.getFailures()) {
