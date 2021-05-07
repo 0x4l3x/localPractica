@@ -21,19 +21,17 @@ public class LineaHorizonte {
 	}
 
 	/*
-	 * m�todo que devuelve un objeto de la clase Punto
+	 * m�todo que devuelve un Punto de la LineaHorizonte
 	 */
 	public Punto getPunto(int i) {
-		return (Punto)this.LineaHorizonte.get(i);
+		return this.LineaHorizonte.get(i);// eliminado el (Punto)
 	}
 
-	// A�ado un punto a la l�nea del horizonte
 	public void addPunto(Punto p)
 	{
 		LineaHorizonte.add(p);
 	}
 
-	// m�todo que borra un punto de la l�nea del horizonte
 	public void borrarPunto(int i)
 	{
 		LineaHorizonte.remove(i);
@@ -43,7 +41,7 @@ public class LineaHorizonte {
 	{
 		return LineaHorizonte.size();
 	}
-	// m�todo que me dice si la l�nea del horizonte est� o no vac�a
+
 	public boolean isEmpty()
 	{
 		return LineaHorizonte.isEmpty();
@@ -78,85 +76,85 @@ public class LineaHorizonte {
 		}
 	}
 
-	public void imprimir (){ //creo q tambien se puede cambiar el nombre
+	@Override
+	public String toString() {
+		String linea=new String();
 		for(int i=0; i< LineaHorizonte.size(); i++ ){
-			System.out.println(LineaHorizonte.get(i).toString());
+			linea+=LineaHorizonte.get(i).toString()+"\n";
 		}
+		return linea;
 	}
 	public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2){
-		int s1y=-1, s2y=-1, prev=-1; // en estas variables guardaremos las alturas de los puntos anteriores y en prev guardaremos la previa del segmento anterior introducido
-
-		while ((!s1.isEmpty()) && (!s2.isEmpty()))     //Mientras tengamos elementos en s1 y en s2
+		int yPrevPuntoS1=-1, yPrevPuntoS2=-1, yPrevSegIntrod=-1; 
+		
+		while ((!s1.isEmpty()) && (!s2.isEmpty())) 
 		{
-			Punto p1 = s1.getPunto(0); // guardamos el primer elemento de s1
-			Punto p2 = s2.getPunto(0); // guardamos el primer elemento de s2
+			Punto puntoS1 = s1.getPunto(0);
+			Punto puntoS2 = s2.getPunto(0); 
 
-			if (p1.getX() < p2.getX()) // si X del s1 es menor que la X del s2
+			if (puntoS1.getX() < puntoS2.getX()) 
 			{
-				prev=fusionarAltosDif(p1, prev, s2y);
-				s1y = p1.getY();   // actualizamos la altura s1y
-				s1.borrarPunto(0); // en cualquier caso eliminamos el punto de s1 (tanto si se añade como si no es valido)
+				yPrevSegIntrod=fusionarAltosDiferentes(puntoS1, yPrevSegIntrod, yPrevPuntoS2);
+				yPrevPuntoS1 = puntoS1.getY(); 
+				s1.borrarPunto(0); // 
 			}
-			else if (p1.getX() > p2.getX()) // si X del s1 es mayor que la X del s2
+			else if (puntoS1.getX() > puntoS2.getX())
 			{
-				prev=fusionarAltosDif(p2, prev, s1y);
-				s2y = p2.getY();   // actualizamos la altura s2y
-				s2.borrarPunto(0); // en cualquier caso eliminamos el punto de s2 (tanto si se añade como si no es valido)
+				yPrevSegIntrod=fusionarAltosDiferentes(puntoS2, yPrevSegIntrod, yPrevPuntoS1);
+				yPrevPuntoS2 = puntoS2.getY();  
+				s2.borrarPunto(0);
 			}
-			else // si la X del s1 es igual a la X del s2
+			else if(puntoS1.getX()==puntoS2.getX())
 			{
-				prev=fusionarAltosIguales(p1,p2,prev);
-				s1y = p1.getY();   // actualizamos la s1y e s2y
-				s2y = p2.getY();
-				s1.borrarPunto(0); // eliminamos el punto del s1 y del s2
+				yPrevSegIntrod=fusionarAltosIguales(puntoS1,puntoS2,yPrevSegIntrod);
+				yPrevPuntoS1 = puntoS1.getY(); 
+				yPrevPuntoS2 = puntoS2.getY();
+				s1.borrarPunto(0); 
 				s2.borrarPunto(0);
 			}
 		}
-		añadirRestoPuntos(s1, prev);
-		añadirRestoPuntos(s2, prev);
+		añadirRestoPuntos(s1, yPrevSegIntrod);
+		añadirRestoPuntos(s2, yPrevSegIntrod);
 	}
 
 
-	public int fusionarAltosDif(Punto p, int prev, int sy ) {
-		Punto paux=new Punto();
-		paux.setX(p.getX());                // guardamos en paux esa X
-		paux.setY(Math.max(p.getY(), sy)); // y hacemos que el maxIzquierdamo entre la Y del s1 y la altura previa del s2 sea la altura Y de paux
+	public int fusionarAltosDiferentes(Punto actual, int yPrevSegIntrod, int yPuntoPrev ) {
+		int yMax;
+		yMax=(Math.max(actual.getY(), yPuntoPrev));
 
-		if (paux.getY()!=prev) // si este maxIzquierdamo no es igual al del segmento anterior
+		if (yMax!=yPrevSegIntrod)
 		{
-			this.addPunto(paux); // añadimos el punto al LineaHorizonte de salida
-			prev = paux.getY();    // actualizamos prev
+			this.addPunto(new Punto(actual.getX(), yMax)); 
+			yPrevSegIntrod =yMax;   
 		}
-		return prev;
+		return yPrevSegIntrod;
 	}
 
-	public int fusionarAltosIguales(Punto p1, Punto p2, int prev) {
-		if ((p1.getY() > p2.getY()) && (p1.getY()!=prev)) // guardaremos aquel punto que tenga la altura mas alta
+	public int fusionarAltosIguales(Punto puntoS1, Punto puntoS2, int yPrevSegIntrod) {
+		if ((puntoS1.getY() > puntoS2.getY()) && (puntoS1.getY()!=yPrevSegIntrod)) 
 		{
-			this.addPunto(p1);
-			prev = p1.getY();
+			this.addPunto(puntoS1);
+			yPrevSegIntrod = puntoS1.getY();
 		}
-		if ((p1.getY() <= p2.getY()) && (p2.getY()!=prev))
+		if ((puntoS1.getY() <= puntoS2.getY()) && (puntoS2.getY()!=yPrevSegIntrod))
 		{
-			this.addPunto(p2);
-			prev = p2.getY();
+			this.addPunto(puntoS2);
+			yPrevSegIntrod = puntoS2.getY();
 		}
-		return prev;
+		return yPrevSegIntrod;
 	}
 
-	public void añadirRestoPuntos(LineaHorizonte restante,int prev) {
-		while ((!restante.isEmpty())) //si aun nos quedan elementos en el s
+	public void añadirRestoPuntos(LineaHorizonte restante,int yPrevSegIntrod) {
+		while ((!restante.isEmpty()))
 		{
-			Punto paux=new Punto();
+			Punto paux=restante.getPunto(0);
 
-			paux=restante.getPunto(0); // guardamos en paux el primer punto
-
-			if (paux.getY()!=prev) // si paux no tiene la misma altura del segmento previo
+			if (paux.getY()!=yPrevSegIntrod)
 			{
-				this.addPunto(paux); // lo añadimos al LineaHorizonte de salida
-				prev = paux.getY();    // y actualizamos prev
+				this.addPunto(paux);
+				yPrevSegIntrod = paux.getY();
 			}
-			restante.borrarPunto(0); // en cualquier caso eliminamos el punto de s (tanto si se añade como si no es valido)
+			restante.borrarPunto(0);
 		}
 	}
 }

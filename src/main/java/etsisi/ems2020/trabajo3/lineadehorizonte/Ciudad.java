@@ -21,15 +21,11 @@ public class Ciudad {
 
 	private LineaHorizonte lineadehorizonte;
 
-	//Generamos una ciudad con 5 edificios aleatorios para pruebas
 	public Ciudad()
 	{
 		ciudad = new ArrayList <Edificio>();
 		lineadehorizonte= new LineaHorizonte();
 
-	}
-	public Ciudad(int n) {//creo que hay que renombrar metodoRandom y quitar esto
-		metodoRandom(n);
 	}
 
 	public Edificio getEdificio(int i) {
@@ -53,51 +49,54 @@ public class Ciudad {
 	{
 		return  lineadehorizonte=crearLineaHorizonte(0, ciudad.size()-1);
 	}
-
-	public LineaHorizonte crearLineaHorizonte(int xIzquierda, int xDerecha)
-	{
-		LineaHorizonte linea = new LineaHorizonte();
-		if(xIzquierda==xDerecha) // Caso base, la ciudad solo tiene un edificio, el perfil es el de ese edificio.
-		{
-			casoBase(linea,xIzquierda);
-		}
-		else
-		{
-			divideConRecursividad(linea,new int [] {xIzquierda, xDerecha});
-		}
-		return linea;
-	}
-
-	public void casoBase(LineaHorizonte linea, int puntoUnico) {
-		Edificio edificio = this.getEdificio(puntoUnico);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi)
-
-		linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
-		linea.addPunto(new Punto(edificio.getxDerecha(),0));
-	}
-	public void divideConRecursividad(LineaHorizonte linea, int [] x) {
-		int mitad=(x[0]+x[1])/2; // Edificio mitad
-
-		LineaHorizonte s1 = this.crearLineaHorizonte(x[0],mitad);
-		LineaHorizonte s2 = this.crearLineaHorizonte(mitad+1,x[1]);
-		printLineasHorizonte(s1, s2);  
-		linea.LineaHorizonteFussion(s1,s2);
-	}
-
-	public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
-		System.out.println("==== S1 ====");
-		s1.imprimir();
-		System.out.println("==== S2 ====");
-		s2.imprimir();
-		System.out.println("\n");
-	}
-
-
 	/**
 	 * Función encargada de fusionar los dos LineaHorizonte obtenidos por la técnica divide y
 	 * vencerás. Es una función muy compleja ya que es la encargada de decidir si un
 	 * edificio solapa a otro, si hay edificios contiguos, etc. y solucionar dichos
 	 * problemas para que el LineaHorizonte calculado sea el correcto.
 	 */
+
+	public LineaHorizonte crearLineaHorizonte(int xEdificioInicial, int xEdificioFinal)
+	{
+		LineaHorizonte linea = new LineaHorizonte();
+		if(xEdificioInicial==xEdificioFinal) 
+		{
+			casoBase(linea,xEdificioInicial);
+		}
+		else
+		{
+			divideConRecursividad(linea,new int [] {xEdificioInicial, xEdificioFinal});
+		}
+		return linea;
+	}
+
+	public void casoBase(LineaHorizonte linea, int edificioUnico) {
+		Edificio edificio = this.getEdificio(edificioUnico);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi) creo q es absutdo
+
+		linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
+		linea.addPunto(new Punto(edificio.getxDerecha(),0));
+	}
+	
+	public void divideConRecursividad(LineaHorizonte linea, int [] x) {
+		int edificioMitad=(x[0]+x[1])/2;
+
+		LineaHorizonte s1 = this.crearLineaHorizonte(x[0],edificioMitad);
+		LineaHorizonte s2 = this.crearLineaHorizonte(edificioMitad+1,x[1]);
+		printLineasHorizonte(s1, s2);  
+		linea.LineaHorizonteFussion(s1,s2);
+	}
+
+	public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
+		System.out.println("==== Linea del horizonte de la izquierda a fusionar ====");
+		
+		System.out.print(s1.toString());
+		
+		System.out.println("==== Linea del horizonte de la derecha a fusionar ====");
+		
+		System.out.print(s2.toString());
+		
+		System.out.println("\n");
+	}
 
 	/*
   Método que carga los edificios que me pasan en el
@@ -128,18 +127,5 @@ public class Ciudad {
 		}
 
 	}
-
-
-	public void metodoRandom(int n)
-	{
-		int i=0;
-		int xIzquierda,y,xDerecha;
-		for(i=0;i<n;i++)
-		{
-			xIzquierda=(int)(Math.random()*100);
-			y=(int)(Math.random()*100);
-			xDerecha=(int)(xIzquierda+(Math.random()*100));
-			this.addEdificio(new Edificio(xIzquierda,y,xDerecha));
-		}
-	}
+//eliminado metodo random
 }
