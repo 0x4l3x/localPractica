@@ -55,16 +55,14 @@ public class LineaHorizonte {
 	{
 		try
 		{
-			Punto p = new Punto();
 			FileWriter fileWriter = new FileWriter(fichero);
 			PrintWriter out = new PrintWriter (fileWriter);
 
 			for(int i=0; i<this.size(); i++)
 			{
-				p=(getPunto(i));
-				out.print(p.getX());
+				out.print(getPunto(i).getX());
 				out.print(" ");
-				out.print(p.getY());
+				out.print(getPunto(i).getY());
 				out.println();
 			}
 			out.close();

@@ -116,8 +116,7 @@ public class Ciudad {
 				xDerecha = sr.nextInt();
 				y = sr.nextInt();
 
-				Edificio Salida = new Edificio(xIzquierda, y, xDerecha);
-				this.addEdificio(Salida);
+				this.addEdificio(new Edificio(xIzquierda, y, xDerecha));
 			}
 		}
 		catch (Exception e) {			
