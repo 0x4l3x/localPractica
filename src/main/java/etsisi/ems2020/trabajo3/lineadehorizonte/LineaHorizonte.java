@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import etsisi.ems2020.trabajo3.clasesauxIzquierdaliares.Punto;
+import etsisi.ems2020.trabajo3.clasesauxiliares.Punto;
 
 
 public class LineaHorizonte {
@@ -57,25 +57,25 @@ public class LineaHorizonte {
 
     public void guardaLineaHorizonte (String fichero)
     {
-        try
-        {
-            Punto p = new Punto();
-            FileWriter fileWriter = new FileWriter(fichero);
-            PrintWriter out = new PrintWriter (fileWriter);
+    	try
+    	{
+    		Punto p = new Punto();
+    		FileWriter fileWriter = new FileWriter(fichero);
+    		PrintWriter out = new PrintWriter (fileWriter);
 
-            for(int i=0; i<this.size(); i++)
-            {
-                p=(getPunto(i));
-                out.print(p.getX());
-                out.print(" ");
-                out.print(p.getY());
-                out.println();
-            }
-            out.close();
-        }
-        catch(Exception e){        
-        	System.out.println("Exception thrown  :" + e);
-}
+    		for(int i=0; i<this.size(); i++)
+    		{
+    			p=(getPunto(i));
+    			out.print(p.getX());
+    			out.print(" ");
+    			out.print(p.getY());
+    			out.println();
+    		}
+    		out.close();
+    	}
+    	catch(Exception e){        
+    		System.out.println("Exception thrown  :" + e);
+    	}
     }
 
     public void imprimir (){ //creo q tambien se puede cambiar el nombre

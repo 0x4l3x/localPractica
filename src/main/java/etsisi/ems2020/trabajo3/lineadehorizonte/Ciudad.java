@@ -4,8 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import etsisi.ems2020.trabajo3.clasesauxIzquierdaliares.Edificio;
-import etsisi.ems2020.trabajo3.clasesauxIzquierdaliares.Punto;
+import etsisi.ems2020.trabajo3.clasesauxiliares.Edificio;
+import etsisi.ems2020.trabajo3.clasesauxiliares.Punto;
 
 
 /*
@@ -59,20 +59,27 @@ public class Ciudad {
     LineaHorizonte linea = new LineaHorizonte();
     if(pi==pd) // Caso base, la ciudad solo tiene un edificio, el perfil es el de ese edificio.
     {
-      Edificio edificio = this.getEdificio(pi);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi)
-      linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
-      linea.addPunto(new Punto(edificio.getxDerecha(),0));
+    	casoBase(linea,pi);
     }
     else
     {
+    	divideConRecursividad(linea, pi, pd);
+    }
+    return linea;
+  }
+  
+  public void casoBase(LineaHorizonte linea, int pi) {
+      Edificio edificio = this.getEdificio(pi);//Plantearse eliminar getEdificio y cambiar por ciudad.get(pi)
+      linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
+      linea.addPunto(new Punto(edificio.getxDerecha(),0));
+  }
+  public void divideConRecursividad(LineaHorizonte linea, int pi, int pd) {
       int medio=(pi+pd)/2; // Edificio mitad
 
       LineaHorizonte s1 = this.crearLineaHorizonte(pi,medio);
       LineaHorizonte s2 = this.crearLineaHorizonte(medio+1,pd);
 	  printLineasHorizonte(s1, s2);  
       linea.LineaHorizonteFussion(s1,s2);
-    }
-    return linea;
   }
   
   public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
