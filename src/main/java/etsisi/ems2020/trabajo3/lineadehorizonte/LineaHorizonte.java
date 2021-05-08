@@ -44,6 +44,15 @@ public class LineaHorizonte {
 	{
 		return LineaHorizonte.isEmpty();
 	}
+	
+	@Override
+	public String toString() {
+		String linea=new String();
+		for(int i=0; i< LineaHorizonte.size(); i++ ){
+			linea+=LineaHorizonte.get(i).toString()+"\n";
+		}
+		return linea;
+	}
 
 	/*
       M�todo al que le pasamos una serie de par�metros para poder guardar
@@ -72,15 +81,7 @@ public class LineaHorizonte {
 		}
 	}
 
-	@Override
-	public String toString() {
-		String linea=new String();
-		for(int i=0; i< LineaHorizonte.size(); i++ ){
-			linea+=LineaHorizonte.get(i).toString()+"\n";
-		}
-		return linea;
-	}
-	public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2){
+	public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2){//Cambiar nombre a fusionarLineas
 		int yPrevPuntoS1=-1, yPrevPuntoS2=-1, yPrevSegIntrod=-1; 
 		
 		while ((!s1.isEmpty()) && (!s2.isEmpty())) 
@@ -114,9 +115,9 @@ public class LineaHorizonte {
 	}
 
 
-	public int fusionarAltosDiferentes(Punto actual, int yPrevSegIntrod, int yPuntoPrev ) {
-		int yMax;
-		yMax=(Math.max(actual.getY(), yPuntoPrev));
+	public int fusionarAltosDiferentes(Punto actual, int yPrevSegIntrod, int yPuntoPrev ) //Cambiar nombre a fusionarYDiferentes
+	{ 
+		int yMax=(Math.max(actual.getY(), yPuntoPrev));
 
 		if (yMax!=yPrevSegIntrod)
 		{
@@ -126,8 +127,8 @@ public class LineaHorizonte {
 		return yPrevSegIntrod;
 	}
 	
-	public int fusionarAltosIguales(Punto puntoS1, Punto puntoS2, int yPrevSegIntrod) {
-		if ((puntoS1.getY() > puntoS2.getY()) && (puntoS1.getY()!=yPrevSegIntrod)) 
+	public int fusionarAltosIguales(Punto puntoS1, Punto puntoS2, int yPrevSegIntrod) {// cambiar a fusionarYiguales
+		if ((puntoS1.getY() > puntoS2.getY()) && (puntoS1.getY()!=yPrevSegIntrod)) //sustituir por un metodo en Punto
 		{
 			this.addPunto(puntoS1);
 			yPrevSegIntrod = puntoS1.getY();

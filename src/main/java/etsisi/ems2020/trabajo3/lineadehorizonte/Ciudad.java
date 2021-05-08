@@ -75,7 +75,7 @@ public class Ciudad {
 		linea.addPunto(new Punto(edificio.getxDerecha(),0));
 	}
 	
-	public void divideConRecursividad(LineaHorizonte linea, int [] x) {
+	public void divideConRecursividad(LineaHorizonte linea, int [] x) { //reemplazar por casoGeneral
 		int edificioMitad=(x[0]+x[1])/2;
 
 		LineaHorizonte s1 = this.crearLineaHorizonte(x[0],edificioMitad);
@@ -84,7 +84,7 @@ public class Ciudad {
 		linea.LineaHorizonteFussion(s1,s2);
 	}
 
-	public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {
+	public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {//cambiar por simplemente imprimirLineas
 		System.out.println("==== Linea del horizonte de la izquierda a fusionar ====");
 		
 		System.out.print(s1.toString());
