@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import etsisi.ems2020.trabajo3.clasesauxiliares.Edificio;
+import etsisi.ems2020.trabajo3.clasesauxiliares.Punto;
+
 
 
 /*

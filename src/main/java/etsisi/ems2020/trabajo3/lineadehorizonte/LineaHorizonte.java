@@ -5,6 +5,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import etsisi.ems2020.trabajo3.clasesauxiliares.Punto;
+
 
 public class LineaHorizonte {
 
