@@ -1,12 +1,4 @@
-package etsisi.ems2020.trabajo3;
-
-
-import java.io.FileWriter;
-import java.io.PrintWriter;
-
-import etsisi.ems2020.trabajo3.lineadehorizonte.Ciudad;
-import etsisi.ems2020.trabajo3.lineadehorizonte.LineaHorizonte;
-
+package etsisi.ems2020.trabajo3.lineadehorizonte;
 
 public class Main {
 

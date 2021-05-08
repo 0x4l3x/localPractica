@@ -1,4 +1,4 @@
-package etsisi.ems2020.trabajo3.clasesauxiliares;
+package etsisi.ems2020.trabajo3.lineadehorizonte;
 
 /*
  * 
