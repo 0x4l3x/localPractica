@@ -66,5 +66,11 @@ public class Punto {
 		return punto;
 	}
 
+	public boolean tieneXMayorQue(Punto p2) {
+		return this.getX()>p2.getX();
+	}
+	public boolean tienenXiguales(Punto p2) {
+		return this.getX()==p2.getX();
+	}
 
 }

@@ -88,19 +88,19 @@ public class LineaHorizonte {
 			Punto puntoS1 = s1.getPunto(0);
 			Punto puntoS2 = s2.getPunto(0); 
 
-			if (puntoS1.getX() < puntoS2.getX()) 
+			if (puntoS2.tieneXMayorQue(puntoS1)) 
 			{
 				yPrevSegIntrod=fusionarAltosDiferentes(puntoS1, yPrevSegIntrod, yPrevPuntoS2);
 				yPrevPuntoS1 = puntoS1.getY(); 
 				s1.borrarPunto(0);
 			}
-			else if (puntoS1.getX() > puntoS2.getX())
+			else if (puntoS1.tieneXMayorQue(puntoS2))
 			{
 				yPrevSegIntrod=fusionarAltosDiferentes(puntoS2, yPrevSegIntrod, yPrevPuntoS1);
 				yPrevPuntoS2 = puntoS2.getY();  
 				s2.borrarPunto(0);
 			}
-			else if(puntoS1.getX()==puntoS2.getX())
+			else if(puntoS1.tienenXiguales(puntoS2))
 			{
 				yPrevSegIntrod=fusionarAltosIguales(puntoS1,puntoS2,yPrevSegIntrod);
 				yPrevPuntoS1 = puntoS1.getY(); 
@@ -125,7 +125,7 @@ public class LineaHorizonte {
 		}
 		return yPrevSegIntrod;
 	}
-
+	
 	public int fusionarAltosIguales(Punto puntoS1, Punto puntoS2, int yPrevSegIntrod) {
 		if ((puntoS1.getY() > puntoS2.getY()) && (puntoS1.getY()!=yPrevSegIntrod)) 
 		{
