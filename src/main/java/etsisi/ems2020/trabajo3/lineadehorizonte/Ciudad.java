@@ -84,7 +84,7 @@ public class Ciudad {
 		LineaHorizonte s1 = this.crearLineaHorizonte(x[0],edificioMitad);
 		LineaHorizonte s2 = this.crearLineaHorizonte(edificioMitad+1,x[1]);
 		printLineasHorizonte(s1, s2);  
-		linea.LineaHorizonteFussion(s1,s2);
+		linea.lineaHorizonteFussion(s1,s2);
 	}
 
 	public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {//cambiar por simplemente imprimirLineas

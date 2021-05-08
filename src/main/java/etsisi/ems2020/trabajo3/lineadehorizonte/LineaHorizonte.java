@@ -10,48 +10,48 @@ import etsisi.ems2020.trabajo3.clasesauxiliares.Punto;
 
 public class LineaHorizonte {
 
-	private ArrayList <Punto> LineaHorizonte ;
+	private  ArrayList <Punto> lineaHorizonte ;
 
 	/*
 	 * Constructor sin par�metros
 	 */
 	public LineaHorizonte()
 	{
-		LineaHorizonte = new ArrayList <Punto>();
+		lineaHorizonte = new ArrayList <Punto>();
 	}
 
 	/*
 	 * m�todo que devuelve un Punto de la LineaHorizonte
 	 */
 	public Punto getPunto(int i) {
-		return this.LineaHorizonte.get(i);// eliminado el (Punto)
+		return this.lineaHorizonte.get(i);// eliminado el (Punto)
 	}
 
 	public void addPunto(Punto p)
 	{
-		LineaHorizonte.add(p);
+		lineaHorizonte.add(p);
 	}
 
 	public void borrarPunto(int i)
 	{
-		LineaHorizonte.remove(i);
+		lineaHorizonte.remove(i);
 	}
 
 	public int size()
 	{
-		return LineaHorizonte.size();
+		return lineaHorizonte.size();
 	}
 
 	public boolean isEmpty()
 	{
-		return LineaHorizonte.isEmpty();
+		return lineaHorizonte.isEmpty();
 	}
 	
 	@Override
 	public String toString() {
-		String linea=new String();
-		for(int i=0; i< LineaHorizonte.size(); i++ ){
-			linea+=LineaHorizonte.get(i).toString()+"\n";
+		String linea="";
+		for(Punto punto: lineaHorizonte) {
+			linea+=punto.toString()+"\n";
 		}
 		return linea;
 	}
@@ -68,22 +68,20 @@ public class LineaHorizonte {
 		{
 			FileWriter fileWriter = new FileWriter(fichero);
 			PrintWriter out = new PrintWriter (fileWriter);
-
+			Punto aux;//creo que se puede eliminar pero creo q no renta
 			for(int i=0; i<this.size(); i++)
 			{
-				out.print(getPunto(i).getX());
-				out.print(" ");
-				out.print(getPunto(i).getY());
-				out.println();
+				aux=getPunto(i);
+				out.println(aux.getX()+" "+ aux.getY());
 			}
 			out.close();
 		}
 		catch(Exception e){        
-			System.out.println("Exception thrown  :" + e);
+			e.getStackTrace();
 		}
 	}
 
-	public void LineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2){//Cambiar nombre a fusionarLineas
+	public void lineaHorizonteFussion(LineaHorizonte s1,LineaHorizonte s2){//Cambiar nombre a fusionarLineas
 		int yPrevPuntoS1=-1, yPrevPuntoS2=-1, yPrevSegIntrod=-1; 
 		
 		while ((!s1.isEmpty()) && (!s2.isEmpty())) 
@@ -112,14 +110,14 @@ public class LineaHorizonte {
 				s2.borrarPunto(0);
 			}
 		}
-		añadirRestoPuntos(s1, yPrevSegIntrod);
-		añadirRestoPuntos(s2, yPrevSegIntrod);
+		this.aniadirRestoPuntos(s1, yPrevSegIntrod);
+		this.aniadirRestoPuntos(s2, yPrevSegIntrod);
 	}
 
 
 	public int fusionarAltosDiferentes(Punto actual, int yPrevSegIntrod, int yPuntoPrev ) //Cambiar nombre a fusionarYDiferentes
 	{ 
-		int yMax=(Math.max(actual.getY(), yPuntoPrev));
+		int yMax=Math.max(actual.getY(), yPuntoPrev);
 
 		if (yMax!=yPrevSegIntrod)
 		{
@@ -143,8 +141,8 @@ public class LineaHorizonte {
 		return yPrevSegIntrod;
 	}
 
-	public void añadirRestoPuntos(LineaHorizonte restante,int yPrevSegIntrod) {
-		while ((!restante.isEmpty()))
+	public void aniadirRestoPuntos(LineaHorizonte restante,int yPrevSegIntrod) {
+		while (!restante.isEmpty())
 		{
 			Punto paux=restante.getPunto(0);
 
