@@ -1,5 +1,6 @@
 package etsisi.ems2020.trabajo3.clasesauxiliares;
 
+
 public class Edificio {
 	private int xIzquierda;
 	private int y;

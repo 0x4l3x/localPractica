@@ -126,7 +126,6 @@ public class Ciudad {
 				xIzquierda = sr.nextInt();
 				xDerecha = sr.nextInt();
 				y = sr.nextInt();
-				//this.addEdificio(Edificio.cargarEdificio(sr));
 				this.addEdificio(new Edificio(xIzquierda, y, xDerecha));
 			}
 			sr.close();
