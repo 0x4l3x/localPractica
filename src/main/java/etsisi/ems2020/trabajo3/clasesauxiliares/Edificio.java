@@ -35,4 +35,5 @@ public class Edificio {
 	public void setxDerecha(int xDerecha) {
 		this.xDerecha = xDerecha;
 	}
+
 }

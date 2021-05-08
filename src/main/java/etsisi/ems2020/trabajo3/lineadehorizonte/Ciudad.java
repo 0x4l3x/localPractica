@@ -18,7 +18,7 @@ xIzquierda la coordenada en X origen del edificio iésimo, xDerecha la coordenad
  */
 public class Ciudad {
 
-	private ArrayList <Edificio> ciudad;
+	private ArrayList <Edificio> ciudad;//rename 
 
 	private LineaHorizonte lineadehorizonte;
 
@@ -30,7 +30,7 @@ public class Ciudad {
 	}
 
 	public Edificio getEdificio(int i) {
-		return (Edificio)this.ciudad.get(i);
+		return this.ciudad.get(i);
 	}
 	public void addEdificio (Edificio e)
 	{
@@ -45,11 +45,19 @@ public class Ciudad {
 	{
 		return ciudad.size();
 	}
-
+	
+	public void setLineaHorizonte() {
+		lineadehorizonte=crearLineaHorizonte(0, ciudad.size()-1);
+	}
+	
 	public LineaHorizonte getLineaHorizonte()
 	{
-		return  lineadehorizonte=crearLineaHorizonte(0, ciudad.size()-1);
+		if(lineadehorizonte.isEmpty()) {
+			setLineaHorizonte();
+		}
+		return  lineadehorizonte;
 	}
+
 	/**
 	 * Función encargada de fusionar los dos LineaHorizonte obtenidos por la técnica divide y
 	 * vencerás. Es una función muy compleja ya que es la encargada de decidir si un
@@ -118,13 +126,14 @@ public class Ciudad {
 				xIzquierda = sr.nextInt();
 				xDerecha = sr.nextInt();
 				y = sr.nextInt();
-
+				//this.addEdificio(Edificio.cargarEdificio(sr));
 				this.addEdificio(new Edificio(xIzquierda, y, xDerecha));
 			}
+			sr.close();
 		}
 		catch (Exception e) {			
-			System.out.println("Exception thrown  :" + e);
-		}
+			e.getStackTrace();		
+			}
 
 	}
 //eliminado metodo random

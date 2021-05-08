@@ -7,8 +7,8 @@ package etsisi.ems2020.trabajo3.clasesauxiliares;
  * cartesiano de coordendas
  */
 public class Punto {
-	int x;
-	int y;
+	private int x;
+	private int y;
 
 	/*
 	 * Constructor sin par�metros de un punto en concreto
@@ -58,12 +58,7 @@ public class Punto {
 	
 	@Override
 	public String toString() {
-		String punto = "Punto [x=";
-		punto = punto + x;
-		punto = punto + ", y=";
-		punto = punto + y;
-		punto = punto +  "]";
-		return punto;
+		return new String ("Punto [x="+ x +", y="+ y +"]");
 	}
 
 	public boolean tieneXMayorQue(Punto p2) {
