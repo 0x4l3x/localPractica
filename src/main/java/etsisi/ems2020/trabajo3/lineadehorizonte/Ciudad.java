@@ -3,7 +3,6 @@ package etsisi.ems2020.trabajo3.lineadehorizonte;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import etsisi.ems2020.trabajo3.lineadehorizonte.clasesauxiliares.Edificio;
 
 
@@ -16,7 +15,7 @@ xIzquierda la coordenada en X origen del edificio iésimo, xDerecha la coordenad
  */
 public class Ciudad {
 
-	private ArrayList <Edificio> ciudad;//rename 
+	private ArrayList <Edificio> ciudad;//rename
 
 	private LineaHorizonte lineadehorizonte;
 
@@ -43,11 +42,11 @@ public class Ciudad {
 	{
 		return ciudad.size();
 	}
-	
+
 	public void setLineaHorizonte() {
 		lineadehorizonte=crearLineaHorizonte(0, ciudad.size()-1);
 	}
-	
+
 	public LineaHorizonte getLineaHorizonte()
 	{
 		if(lineadehorizonte.isEmpty()) {
@@ -66,7 +65,7 @@ public class Ciudad {
 	public LineaHorizonte crearLineaHorizonte(int xEdificioInicial, int xEdificioFinal)
 	{
 		LineaHorizonte linea = new LineaHorizonte();
-		if(xEdificioInicial==xEdificioFinal) 
+		if(xEdificioInicial==xEdificioFinal)
 		{
 			casoBase(linea,xEdificioInicial);
 		}
@@ -83,25 +82,25 @@ public class Ciudad {
 		linea.addPunto(new Punto(edificio.getXi(), edificio.getY()));
 		linea.addPunto(new Punto(edificio.getxDerecha(),0));
 	}
-	
+
 	public void divideConRecursividad(LineaHorizonte linea, int [] x) { //reemplazar por casoGeneral
 		int edificioMitad=(x[0]+x[1])/2;
 
 		LineaHorizonte s1 = this.crearLineaHorizonte(x[0],edificioMitad);
 		LineaHorizonte s2 = this.crearLineaHorizonte(edificioMitad+1,x[1]);
-		printLineasHorizonte(s1, s2);  
+		printLineasHorizonte(s1, s2);
 		linea.lineaHorizonteFussion(s1,s2);
 	}
 
 	public void printLineasHorizonte(LineaHorizonte s1, LineaHorizonte s2) {//cambiar por simplemente imprimirLineas
 		System.out.println("==== Linea del horizonte de la izquierda a fusionar ====");
-		
+
 		System.out.print(s1.toString());
-		
+
 		System.out.println("==== Linea del horizonte de la derecha a fusionar ====");
-		
+
 		System.out.print(s2.toString());
-		
+
 		System.out.println("\n");
 	}
 
@@ -128,8 +127,8 @@ public class Ciudad {
 			}
 			sr.close();
 		}
-		catch (Exception e) {			
-			e.getStackTrace();		
+		catch (Exception e) {
+			e.getStackTrace();
 			}
 
 	}
